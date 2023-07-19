@@ -11,7 +11,7 @@ using namespace std;
 
 class Observer {
 public:
-    virtual ~Observer() = default; /*vedere cosa fa default */
+    virtual ~Observer() = default;
 
     virtual void update(string& IDlista) = 0;
 };
