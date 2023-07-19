@@ -1,5 +1,5 @@
 //
-// Created by Francesca Sani on 11/07/23.
+// Created by Francesca Sani
 //
 
 #ifndef LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_UTENTE_H

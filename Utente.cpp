@@ -1,5 +1,5 @@
 //
-// Created by Francesca Sani on 11/07/23.
+// Created by Francesca Sani
 //
 
 #include "Utente.h"

@@ -1,19 +1,19 @@
 //
-// Created by Francesca Sani on 11/07/23.
+// Created by Francesca Sani
 //
 
 #ifndef LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_OBSERVER_H
 #define LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_OBSERVER_H
 
-/*using namespace std;*/
-
 #include <string>
+
+using namespace std;
 
 class Observer {
 public:
     virtual ~Observer() = default; /*vedere cosa fa default */
 
-    virtual void update() = 0; /*aggiungere eventuali parametri*/
+    virtual void update(string& IDlista) = 0;
 };
 
 

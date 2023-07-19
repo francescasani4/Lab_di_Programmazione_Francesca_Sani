@@ -1,13 +1,13 @@
 //
-// Created by Francesca Sani on 11/07/23.
+// Created by Francesca Sani
 //
 
 #ifndef LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_ARTICOLO_H
 #define LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_ARTICOLO_H
 
-using namespace std;
-
 #include <string>
+
+using namespace std;
 
 class Articolo {
 public:
@@ -19,6 +19,8 @@ public:
 
         acquistato = false;
     }
+
+    virtual ~Articolo() {};
 
     const string &getIDarticolo() const {
         return IDarticolo;

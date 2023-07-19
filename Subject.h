@@ -1,13 +1,13 @@
 //
-// Created by Francesca Sani on 11/07/23.
+// Created by Francesca Sani
 //
 
 #ifndef LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_SUBJECT_H
 #define LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_SUBJECT_H
 
-/*using namespace std;*/
-
 #include "Observer.h"
+
+using namespace std;
 
 class Subject {
 public:
