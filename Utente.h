@@ -1,0 +1,14 @@
+//
+// Created by Francesca Sani on 11/07/23.
+//
+
+#ifndef LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_UTENTE_H
+#define LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_UTENTE_H
+
+
+class Utente {
+
+};
+
+
+#endif //LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_UTENTE_H
