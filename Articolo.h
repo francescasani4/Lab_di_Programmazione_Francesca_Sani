@@ -6,6 +6,7 @@
 #define LAB_DI_PROGRAMMAZIONE_FRANCESCA_SANI_ARTICOLO_H
 
 #include <string>
+#include <stdexcept>
 
 using namespace std;
 
@@ -13,9 +14,10 @@ class Articolo {
 public:
     Articolo(string IDarticolo, string cat, int qt): IDarticolo(IDarticolo), cat(cat) {
         if(qt > 0)
-            qt = qt;
+           this -> qt = qt;
         else
-            /* stampare errore */
+            /* controllare */
+            throw invalid_argument("La quantità inserita deve avere valore positivo!");
 
         acquistato = false;
     }
