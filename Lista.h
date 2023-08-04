@@ -10,13 +10,15 @@
 #include "Articolo.h"
 
 #include <list>
+#include <map>
 #include <iostream>
+#include "Articolo.h"
 
 using namespace std;
 
 class Lista : public Subject {
 public:
-    Lista(string IDlista) : IDlista(IDlista) {}
+    Lista(string& IDlista) : IDlista(IDlista) {}
 
     virtual ~Lista() {};
 
@@ -29,7 +31,7 @@ public:
     }
 
     /* Da implementare */
-    void aggiungiArt(Articolo& IDarticolo);
+    void aggiungiArticolo(Articolo& IDarticolo);
     void rimuoviArticolo(Articolo& IDarticolo);
     bool cercaArticolo(Articolo& IDarticolo);
     void setComprato(Articolo& IDarticolo);
@@ -41,7 +43,7 @@ public:
 private:
     string IDlista; /* Nome Lista */
     list<Observer*> observers;
-    list<Articolo> articoli;
+    map<string, Articolo> articoli;
     /* aggiungere attributi */
 };
 
