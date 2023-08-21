@@ -12,7 +12,6 @@
 #include <list>
 #include <map>
 #include <iostream>
-#include "Articolo.h"
 
 using namespace std;
 
