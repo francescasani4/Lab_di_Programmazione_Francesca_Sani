@@ -5,42 +5,69 @@
 #include "Lista.h"
 
 void Lista::aggiungiArticolo(Articolo &IDarticolo) {
-    auto itr = articoli.find(IDarticolo.getIDarticolo());
+    auto itr = listaArt.find(IDarticolo.getIDarticolo());
 
-    if(itr != articoli.end()) {
-        itr -> second.setQt(itr->second.getQt() + IDarticolo.getQt());
-    }
-    else {
-        articoli.emplace(IDarticolo.getIDarticolo(), IDarticolo);
+    if(itr != listaArt.end()) {
+        itr -> second->setQt(itr -> second->getQt() + IDarticolo.getQt());
+    } else {
+        listaArt.insert(make_pair(IDarticolo.getIDarticolo(),&IDarticolo));
     }
 
     notify();
 }
 
-void Lista::rimuoviArticolo(Articolo &IDarticolo) {
-    bool result = cercaArticolo((IDarticolo));
-    if(result) {
-        articoli.erase(IDarticolo.getIDarticolo());
+void Lista::rimuoviArticolo(string &art) {
+    auto itr = listaArt.find(art);
+
+    if(itr != listaArt.end()) {
+        listaArt.erase(itr);
         notify();
-    }
-    else {
-        cout << "Articolo non trovato!" << endl;
-    }
-}
-
-bool Lista::cercaArticolo(Articolo &IDarticolo) {
-    auto itr = articoli.find(IDarticolo.getIDarticolo());
-
-    if(itr == articoli.end()) {
-        return false;
-    }
-    else {
-        return true;
+    } else {
+        cout << "ERRORE!" << endl;
     }
 }
 
-void Lista::setComprato(Articolo &IDarticolo) {
+void Lista::setComprato(string &art) {
+    auto itr = listaArt.find(art);
 
+    if (itr != listaArt.end()) {
+        bool acq = itr -> second -> isAcquistato();
+
+        if(acq)
+            itr -> second -> setAcquistato(false);
+        else
+            itr -> second ->setAcquistato(true);
+
+        notify();
+    } else {
+        cout << "ERRORE!" << endl;
+    }
+}
+
+int Lista::setNonComprato() {
+    int r = 0;
+
+    for(auto &itr: listaArt) {
+        if(!itr.second -> isAcquistato()) {
+            r += itr.second->getQt();
+        }
+    }
+
+    return r;
+}
+
+void Lista::stampaArticoliDaComprare() {
+    int r = 0;
+    cout << "Articoli da comprare nella lista " << IDlista << ": " << endl;
+
+    for (const auto& a : listaArt) {
+        const Articolo* articolo = a.second;
+        if (!articolo->isAcquistato()) {
+            std::cout << "Nome: " << articolo->getIDarticolo() << std::endl;
+            std::cout << "Quantità: " << articolo->getQt() << std::endl;
+            std::cout << "-------------------" << std::endl;
+        }
+    }
 }
 
 void Lista::subscribe(Observer *o) {
@@ -53,5 +80,5 @@ void Lista::unsubscribe(Observer *o) {
 
 void Lista::notify() {
     for(auto &itr : observers)
-        itr -> update(IDlista); /*si passa il nome della lista*/
+        itr -> update(IDlista);
 }

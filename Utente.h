@@ -16,35 +16,38 @@ using namespace std;
 
 class Utente : public Observer {
 public:
-    Utente(const string& IDutente) : IDutente(IDutente) {}
+    /*Utente(const string& IDutente) : IDutente(IDutente) {}*/
 
-    virtual ~Utente() {};
+    virtual ~Utente() {
+        for(auto &itr : liste) {
+            itr.second ->unsubscribe(this);
+        }
+    };
 
-    const string &getIDutente() const {
+    /*const string &getIDutente() const {
         return IDutente;
     }
 
     void setIDutente(const string &iDutente) {
         IDutente = iDutente;
-    }
+    }*/
 
-    const vector<Lista *> &getListe() const {
+    const map<string, Lista *> &getListe() const {
         return liste;
     }
 
-    void setListe(const vector<Lista *> &liste) {
+    void setListe(const map<string, Lista *> &liste) {
         Utente::liste = liste;
     }
 
+    void aggiungiLista(Lista& lista);
+    void rimuoviLista(string& lista);
 
-    void aggiungiLista(Lista* lista);
-    void rimuoviLista(Lista* lista);
-
-    void update(string& IDLista) override;
+    void update(const string& IDLista) override;
 
 private:
-    string IDutente;
-    vector<Lista*> liste;
+    /*string IDutente;*/
+    map<string, Lista*> liste;
 };
 
 

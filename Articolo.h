@@ -14,7 +14,7 @@ class Articolo {
 public:
     Articolo(string IDarticolo, string cat, int qt): IDarticolo(IDarticolo), cat(cat) {
         if(qt > 0)
-           this -> qt = qt;
+            this -> qt = qt;
         else
             /* controllare */
             throw invalid_argument("La quantità inserita deve avere valore positivo!");

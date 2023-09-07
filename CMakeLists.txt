@@ -3,4 +3,4 @@ project(Lab_di_Programmazione_Francesca_Sani)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Lab_di_Programmazione_Francesca_Sani main.cpp Observer.cpp Observer.h Subject.cpp Subject.h Lista.cpp Lista.h Utente.cpp Utente.h Articolo.cpp Articolo.h)
+add_executable(Lab_di_Programmazione_Francesca_Sani main.cpp Observer.h Subject.h Lista.cpp Lista.h Utente.cpp Utente.h Articolo.h)

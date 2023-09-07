@@ -13,7 +13,7 @@ class Observer {
 public:
     virtual ~Observer() = default;
 
-    virtual void update(string& IDlista) = 0;
+    virtual void update(const string& IDlista) = 0;
 };
 
 

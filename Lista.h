@@ -19,7 +19,7 @@ class Lista : public Subject {
 public:
     Lista(string& IDlista) : IDlista(IDlista) {}
 
-    virtual ~Lista() {};
+    virtual ~Lista() {}; /* oppure mettere = default */
 
     const string &getIDlista() const {
         return IDlista;
@@ -29,11 +29,27 @@ public:
         IDlista = iDlista;
     }
 
-    /* Da implementare */
+    const map<string, Articolo *> &getListaArt() const {
+        return listaArt;
+    }
+
+    void setListaArt(const map<string, Articolo *> &listaArt) {
+        Lista::listaArt = listaArt;
+    }
+
+    const list<Observer *> &getObservers() const {
+        return observers;
+    }
+
+    void setObservers(const list<Observer *> &observers) {
+        Lista::observers = observers;
+    }
+
     void aggiungiArticolo(Articolo& IDarticolo);
-    void rimuoviArticolo(Articolo& IDarticolo);
-    bool cercaArticolo(Articolo& IDarticolo);
-    void setComprato(Articolo& IDarticolo);
+    void rimuoviArticolo(string& art);
+    void setComprato(string& art);
+    int setNonComprato();
+    void stampaArticoliDaComprare();
 
     virtual void subscribe(Observer* o) override;
     virtual void unsubscribe(Observer* o) override;
@@ -42,8 +58,8 @@ public:
 private:
     string IDlista; /* Nome Lista */
     list<Observer*> observers;
-    map<string, Articolo> articoli;
-    /* aggiungere attributi */
+    map<string, Articolo*> listaArt; /*usare shared_ptr ?*/
+
 };
 
 

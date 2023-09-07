@@ -3,18 +3,23 @@
 //
 
 #include "Utente.h"
-void Utente::aggiungiLista(Lista* lista) {
-    liste.push_back(lista);
-    lista -> subscribe(this);
+void Utente::aggiungiLista(Lista& lista) {
+    liste.insert(make_pair(lista.getIDlista(), &lista));
+    lista.subscribe(this);
 }
 
-void Utente::rimuoviLista(Lista* lista) {
-    liste.erase(remove(liste.begin(), liste.end(), lista), liste.end());
-    lista -> unsubscribe(this);
+void Utente::rimuoviLista(string& lista) {
+    auto itr = liste.find(lista);
+
+    if(itr != liste.end()) {
+        itr -> second ->unsubscribe(this);
+        liste.erase(lista);
+    }
 }
 
-void Utente::update(string& IDLista) {
-    cout << "NOTIFICA!" << endl;
-    cout << IDutente << endl;
-    cout << "La lista " << IDLista << "è stata aggiornata." << endl;
+void Utente::update(const string& IDLista) {
+    auto itr = liste.find(IDLista);
+
+    cout << "La lista " << IDLista << " è  stata AGGIORNATA!" << endl;
+    itr -> second -> stampaArticoliDaComprare();
 }
