@@ -95,7 +95,25 @@ int main() {
     /*Stampa chi partecipa alla lista2*/
     cout <<endl;
     cout << "Partecipanti della lista " << lista2->getIDlista() << ":" << endl;
-    list<Observer *> o = lista2->getObservers();
+    list<Observer *> o;
+    o = lista2->getObservers();
+    for (auto itr : o) {
+        if(itr == utente1) {
+            cout << utente1->getIDutente() << endl;
+        } else if(itr == utente2) {
+            cout << utente2->getIDutente() << endl;
+        } else {
+            cout << utente3->getIDutente() << endl;
+        }
+    }
+    cout <<endl;
+    cout << "__________________________________________________" << endl;
+
+    /*Elimina l'utente2 e stampa chi partecipa alla lista2*/
+    delete utente2;
+    cout <<endl;
+    cout << "Partecipanti della lista " << lista2->getIDlista() << ":" << endl;
+    o = lista2->getObservers();
     for (auto itr : o) {
         if(itr == utente1) {
             cout << utente1->getIDutente() << endl;
@@ -171,8 +189,6 @@ int main() {
     lista3->setComprato("Pasta");
     cout << endl;
     cout << "__________________________________________________" << endl;
-
-
 
     return 0;
 }
