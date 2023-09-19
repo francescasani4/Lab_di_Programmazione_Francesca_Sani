@@ -12,11 +12,10 @@ using namespace std;
 
 class Articolo {
 public:
-    Articolo(string IDarticolo, string cat, int qt): IDarticolo(IDarticolo), cat(cat) {
+    Articolo(const string& IDarticolo,const string& cat, int qt): IDarticolo(IDarticolo), cat(cat) {
         if(qt > 0)
             this -> qt = qt;
         else
-            /* controllare */
             throw invalid_argument("La quantità inserita deve avere valore positivo!");
 
         acquistato = false;
@@ -45,7 +44,7 @@ public:
     }
 
     void setQt(int qt) {
-        Articolo::qt = qt; /* fare controllo se valore valido */
+        Articolo::qt = qt;
     }
 
     bool isAcquistato() const {
@@ -57,10 +56,10 @@ public:
     }
 
 private:
-    string IDarticolo; /* Nome articolo */
-    string cat; /* Categoria */
-    int qt; /* Quantità */
-    bool acquistato; /* Indica se l'atricolo è stato acquistato o meno */
+    string IDarticolo;
+    string cat;
+    int qt;
+    bool acquistato;
 };
 
 

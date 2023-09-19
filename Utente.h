@@ -16,7 +16,7 @@ using namespace std;
 
 class Utente : public Observer {
 public:
-    /*Utente(const string& IDutente) : IDutente(IDutente) {}*/
+    Utente(const string& IDutente) : IDutente(IDutente) {}
 
     virtual ~Utente() {
         for(auto &itr : liste) {
@@ -24,13 +24,13 @@ public:
         }
     };
 
-    /*const string &getIDutente() const {
+    const string &getIDutente() const {
         return IDutente;
     }
 
     void setIDutente(const string &iDutente) {
         IDutente = iDutente;
-    }*/
+    }
 
     const map<string, Lista *> &getListe() const {
         return liste;
@@ -40,13 +40,13 @@ public:
         Utente::liste = liste;
     }
 
-    void aggiungiLista(Lista& lista);
-    void rimuoviLista(string& lista);
+    void aggiungiLista(Lista* lista);
+    void rimuoviLista(const string& lista);
 
     void update(const string& IDLista) override;
 
 private:
-    /*string IDutente;*/
+    string IDutente;
     map<string, Lista*> liste;
 };
 

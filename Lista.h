@@ -17,9 +17,9 @@ using namespace std;
 
 class Lista : public Subject {
 public:
-    Lista(string& IDlista) : IDlista(IDlista) {}
+    Lista(const string& IDlista) : IDlista(IDlista) {}
 
-    virtual ~Lista() {}; /* oppure mettere = default */
+    virtual ~Lista() {};
 
     const string &getIDlista() const {
         return IDlista;
@@ -45,9 +45,9 @@ public:
         Lista::observers = observers;
     }
 
-    void aggiungiArticolo(Articolo& IDarticolo);
-    void rimuoviArticolo(string& art);
-    void setComprato(string& art);
+    void aggiungiArticolo(Articolo* IDarticolo);
+    void rimuoviArticolo(const string& art);
+    void setComprato(const string& art);
     int setNonComprato();
     void stampaArticoliDaComprare();
 
@@ -56,9 +56,9 @@ public:
     virtual void notify() override;
 
 private:
-    string IDlista; /* Nome Lista */
+    string IDlista;
     list<Observer*> observers;
-    map<string, Articolo*> listaArt; /*usare shared_ptr ?*/
+    map<string, Articolo*> listaArt;
 
 };
 

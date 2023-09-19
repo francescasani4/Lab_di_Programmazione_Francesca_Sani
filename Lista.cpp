@@ -4,19 +4,19 @@
 
 #include "Lista.h"
 
-void Lista::aggiungiArticolo(Articolo &IDarticolo) {
-    auto itr = listaArt.find(IDarticolo.getIDarticolo());
+void Lista::aggiungiArticolo(Articolo *IDarticolo) {
+    auto itr = listaArt.find(IDarticolo->getIDarticolo());
 
     if(itr != listaArt.end()) {
-        itr -> second->setQt(itr -> second->getQt() + IDarticolo.getQt());
+        itr -> second->setQt(itr -> second->getQt() + IDarticolo->getQt());
     } else {
-        listaArt.insert(make_pair(IDarticolo.getIDarticolo(),&IDarticolo));
+        listaArt.insert(make_pair(IDarticolo->getIDarticolo(),IDarticolo));
     }
 
     notify();
 }
 
-void Lista::rimuoviArticolo(string &art) {
+void Lista::rimuoviArticolo(const string &art) {
     auto itr = listaArt.find(art);
 
     if(itr != listaArt.end()) {
@@ -27,7 +27,7 @@ void Lista::rimuoviArticolo(string &art) {
     }
 }
 
-void Lista::setComprato(string &art) {
+void Lista::setComprato(const string &art) {
     auto itr = listaArt.find(art);
 
     if (itr != listaArt.end()) {

@@ -3,12 +3,12 @@
 //
 
 #include "Utente.h"
-void Utente::aggiungiLista(Lista& lista) {
-    liste.insert(make_pair(lista.getIDlista(), &lista));
-    lista.subscribe(this);
+void Utente::aggiungiLista(Lista* lista) {
+    liste.insert(make_pair(lista->getIDlista(), lista));
+    lista->subscribe(this);
 }
 
-void Utente::rimuoviLista(string& lista) {
+void Utente::rimuoviLista(const string& lista) {
     auto itr = liste.find(lista);
 
     if(itr != liste.end()) {
@@ -20,6 +20,6 @@ void Utente::rimuoviLista(string& lista) {
 void Utente::update(const string& IDLista) {
     auto itr = liste.find(IDLista);
 
-    cout << "La lista " << IDLista << " è  stata AGGIORNATA!" << endl;
+    cout << "La lista " << IDLista << " è stata AGGIORNATA!" << endl;
     itr -> second -> stampaArticoliDaComprare();
 }
