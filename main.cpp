@@ -2,9 +2,7 @@
 #include "Lista.h"
 #include "Utente.h"
 #include <string>
-#include <stdexcept>
 using namespace std;
-
 
 int main() {
     /*creare 5 liste*/
