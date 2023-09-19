@@ -23,7 +23,7 @@ void Lista::rimuoviArticolo(const string &art) {
         listaArt.erase(itr);
         notify();
     } else {
-        cout << "ERRORE!" << endl;
+        cout << "ERRORE! Articolo non trovato" << endl;
     }
 }
 
@@ -57,15 +57,15 @@ int Lista::setNonComprato() {
 }
 
 void Lista::stampaArticoliDaComprare() {
-    int r = 0;
     cout << "Articoli da comprare nella lista " << IDlista << ": " << endl;
 
-    for (const auto& a : listaArt) {
-        const Articolo* articolo = a.second;
+    for (auto a : listaArt) {
+        Articolo* articolo = a.second;
         if (!articolo->isAcquistato()) {
-            std::cout << "Nome: " << articolo->getIDarticolo() << std::endl;
-            std::cout << "Quantità: " << articolo->getQt() << std::endl;
-            std::cout << "-------------------" << std::endl;
+            cout << "Nome: " << articolo->getIDarticolo() << endl;
+            cout << "Quantità: " << articolo->getQt() << endl;
+            cout << "Categoria: " << articolo->getCat() << endl;
+            cout << "**************************" << endl;
         }
     }
 }
