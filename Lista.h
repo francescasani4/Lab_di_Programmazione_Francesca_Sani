@@ -12,6 +12,7 @@
 #include <list>
 #include <map>
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -29,26 +30,18 @@ public:
         IDlista = iDlista;
     }
 
-    const map<string, Articolo *> &getListaArt() const {
+    const map<string, shared_ptr<Articolo>> &getListaArt() const {
         return listaArt;
-    }
-
-    void setListaArt(const map<string, Articolo *> &listaArt) {
-        Lista::listaArt = listaArt;
     }
 
     const list<Observer *> &getObservers() const {
         return observers;
     }
 
-    void setObservers(const list<Observer *> &observers) {
-        Lista::observers = observers;
-    }
-
-    void aggiungiArticolo(Articolo* IDarticolo);
-    void rimuoviArticolo(const string& art);
-    void setComprato(const string& art);
-    int setNonComprato();
+    void aggiungiArticolo(Articolo& IDarticolo);
+    bool rimuoviArticolo(const string& art);
+    bool setComprato(const string& art);
+    int getNumeroArticoliNonComprati();
     void stampaArticoliDaComprare();
 
     virtual void subscribe(Observer* o) override;
@@ -58,7 +51,7 @@ public:
 private:
     string IDlista;
     list<Observer*> observers;
-    map<string, Articolo*> listaArt;
+    map<string, shared_ptr<Articolo>> listaArt;
 
 };
 

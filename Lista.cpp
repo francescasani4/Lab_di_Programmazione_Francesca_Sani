@@ -4,51 +4,53 @@
 
 #include "Lista.h"
 
-void Lista::aggiungiArticolo(Articolo *IDarticolo) {
-    auto itr = listaArt.find(IDarticolo->getIDarticolo());
+void Lista::aggiungiArticolo(Articolo& IDarticolo) {
+    auto itr = listaArt.find(IDarticolo.getIDarticolo());
 
     if(itr != listaArt.end()) {
-        itr -> second->setQt(itr -> second->getQt() + IDarticolo->getQt());
+        itr -> second->setQt(itr -> second->getQt() + IDarticolo.getQt());
     } else {
-        listaArt.insert(make_pair(IDarticolo->getIDarticolo(),IDarticolo));
+        listaArt.insert(make_pair(IDarticolo.getIDarticolo(),make_shared<Articolo>(IDarticolo)));
     }
 
     notify();
 }
 
-void Lista::rimuoviArticolo(const string &art) {
+bool Lista::rimuoviArticolo(const string &art) {
     auto itr = listaArt.find(art);
 
     if(itr != listaArt.end()) {
         listaArt.erase(itr);
         notify();
+        return true;
     } else {
-        cout << "ERRORE! Articolo non trovato" << endl;
+        return false;
     }
 }
 
-void Lista::setComprato(const string &art) {
+bool Lista::setComprato(const string &art) {
     auto itr = listaArt.find(art);
 
     if (itr != listaArt.end()) {
-        bool acq = itr -> second -> isAcquistato();
+        bool acq = itr -> second->isAcquistato();
 
         if(acq)
-            itr -> second -> setAcquistato(false);
+            itr -> second->setAcquistato(false);
         else
-            itr -> second ->setAcquistato(true);
+            itr -> second->setAcquistato(true);
 
         notify();
+        return true;
     } else {
-        cout << "ERRORE!" << endl;
+        return false;
     }
 }
 
-int Lista::setNonComprato() {
+int Lista::getNumeroArticoliNonComprati() {
     int r = 0;
 
     for(auto &itr: listaArt) {
-        if(!itr.second -> isAcquistato()) {
+        if(!itr.second->isAcquistato()) {
             r += itr.second->getQt();
         }
     }
@@ -59,12 +61,12 @@ int Lista::setNonComprato() {
 void Lista::stampaArticoliDaComprare() {
     cout << "Articoli da comprare nella lista " << IDlista << ": " << endl;
 
-    for (auto a : listaArt) {
-        Articolo* articolo = a.second;
+    for (auto &a : listaArt) {
+        shared_ptr<Articolo>& articolo = a.second;
         if (!articolo->isAcquistato()) {
-            cout << "Nome: " << articolo->getIDarticolo() << endl;
-            cout << "Quantità: " << articolo->getQt() << endl;
-            cout << "Categoria: " << articolo->getCat() << endl;
+            cout << "Nome: " << a.second->getIDarticolo() << endl;
+            cout << "Quantità: " << a.second->getQt() << endl;
+            cout << "Categoria: " << a.second->getCat() << endl;
             cout << "**************************" << endl;
         }
     }

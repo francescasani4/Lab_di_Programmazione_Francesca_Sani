@@ -44,7 +44,10 @@ public:
     }
 
     void setQt(int qt) {
-        Articolo::qt = qt;
+        if(qt > 0)
+            Articolo::qt = qt;
+        else
+            throw invalid_argument("La quantità inserita deve avere valore positivo!");
     }
 
     bool isAcquistato() const {

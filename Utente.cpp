@@ -3,6 +3,7 @@
 //
 
 #include "Utente.h"
+
 void Utente::aggiungiLista(Lista* lista) {
     liste.insert(make_pair(lista->getIDlista(), lista));
     lista->subscribe(this);
@@ -21,5 +22,6 @@ void Utente::update(const string& IDLista) {
     auto itr = liste.find(IDLista);
 
     cout << "La lista " << IDLista << " è stata AGGIORNATA!" << endl;
-    itr -> second -> stampaArticoliDaComprare();
-}
+    itr->second->stampaArticoliDaComprare();
+} //vedere qua dov'è il problema
+

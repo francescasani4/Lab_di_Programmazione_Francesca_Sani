@@ -26,4 +26,6 @@ TEST(ArticoloSuite, TestGetAndSet) {
 
     articolo.setQt(10);
     ASSERT_EQ(articolo.getQt(), 10);
+
+    ASSERT_THROW(articolo.setQt(-1), invalid_argument);
 }

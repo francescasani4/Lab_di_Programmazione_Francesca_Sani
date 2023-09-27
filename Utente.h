@@ -32,12 +32,8 @@ public:
         IDutente = iDutente;
     }
 
-    const map<string, Lista *> &getListe() const {
+    const map<string, Lista*> &getListe() const {
         return liste;
-    }
-
-    void setListe(const map<string, Lista *> &liste) {
-        Utente::liste = liste;
     }
 
     void aggiungiLista(Lista* lista);

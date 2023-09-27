@@ -8,8 +8,8 @@ int main() {
 
     cout << endl;
     cout << "BENVENUTO/A!" << "\n"
-    << "Questo è un programma dove vengono create delle liste, degli utenti e degli articoli \n"
-    << "per simulare il comportamento di un'applicazione che permette di scriversi le proprie liste della spesa." << endl;
+         << "Questo è un programma dove vengono create delle liste, degli utenti e degli articoli \n"
+         << "per simulare il comportamento di un'applicazione che permette di scriversi le proprie liste della spesa." << endl;
     cout << endl;
     cout << "__________________________________________________" << endl;
 
@@ -23,7 +23,7 @@ int main() {
     cout << endl;
     cout << "Sono state create le seguenti liste:" << "\n";
     cout << lista1->getIDlista() << ", " << lista2->getIDlista() << ", " << lista3->getIDlista() << ", "
-    << lista4->getIDlista() << ", " << lista5->getIDlista() << endl;
+         << lista4->getIDlista() << ", " << lista5->getIDlista() << endl;
     cout << endl;
     cout << "__________________________________________________" << endl;
 
@@ -39,23 +39,23 @@ int main() {
     cout << "__________________________________________________" << endl;
 
     /*Creazione di 10 articoli*/
-    Articolo* articolo1 = new Articolo("Pasta", "Cibo", 3);
-    Articolo* articolo2 = new Articolo("Agenda", "Cartoleria", 1);
-    Articolo* articolo3 = new Articolo("Sapone", "Pulizia", 2);
-    Articolo* articolo4 = new Articolo("Croccantini", "Cane", 1);
-    Articolo* articolo5 = new Articolo("Penne", "Cartoleria", 5);
-    Articolo* articolo6 = new Articolo("Pollo", "Cibo", 2);
-    Articolo* articolo7 = new Articolo("Detersivo", "Pulizia", 1);
-    Articolo* articolo8 = new Articolo("Astuccio", "Cartoleria", 1);
-    Articolo* articolo9 = new Articolo("Caricabatteria", "Tecnologia", 2);
-    Articolo* articolo10 = new Articolo("Pallina", "Gioco", 1);
+    Articolo articolo1("Pasta", "Cibo", 3);
+    Articolo articolo2("Agenda", "Cartoleria", 1);
+    Articolo articolo3("Sapone", "Pulizia", 2);
+    Articolo articolo4("Croccantini", "Cane", 1);
+    Articolo articolo5("Penne", "Cartoleria", 5);
+    Articolo articolo6("Pollo", "Cibo", 2);
+    Articolo articolo7("Detersivo", "Pulizia", 1);
+    Articolo articolo8("Astuccio", "Cartoleria", 1);
+    Articolo articolo9("Caricabatteria", "Tecnologia", 2);
+    Articolo articolo10("Pallina", "Gioco", 1);
 
     cout << endl;
     cout << "Sono state creati i seguenti articoli:" << "\n";
-    cout << articolo1->getIDarticolo() << ", " << articolo2->getIDarticolo() << ", " << articolo3->getIDarticolo() << ", "
-    << articolo4->getIDarticolo() << ", " << articolo5->getIDarticolo() << ", " << articolo6->getIDarticolo() << ", "
-    << articolo7->getIDarticolo() << ", " << articolo8->getIDarticolo() << ", " << articolo9->getIDarticolo() << ", "
-    << articolo10->getIDarticolo() << endl;
+    cout << articolo1.getIDarticolo() << ", " << articolo2.getIDarticolo() << ", " << articolo3.getIDarticolo() << ", "
+         << articolo4.getIDarticolo() << ", " << articolo5.getIDarticolo() << ", " << articolo6.getIDarticolo() << ", "
+         << articolo7.getIDarticolo() << ", " << articolo8.getIDarticolo() << ", " << articolo9.getIDarticolo() << ", "
+         << articolo10.getIDarticolo() << endl;
     cout << endl;
     cout << "__________________________________________________" << endl;
 
@@ -144,7 +144,7 @@ int main() {
     /*Stampa gli articoli nella lista5 prima e dopo aver aggiunto e rimosso degli articoli*/
     cout << endl;
     cout << "Articoli presenti nella lista " << lista5->getIDlista() << ": " << endl;
-    map<string, Articolo *> articoli;
+    map<string, shared_ptr<Articolo>> articoli;
     articoli = lista5->getListaArt();
     for(auto itr : articoli) {
         cout << itr.second->getIDarticolo() << endl;
@@ -152,7 +152,8 @@ int main() {
     cout << endl;
     cout << "__________________________________________________" << endl;
     cout << endl;
-    lista5->aggiungiArticolo(new Articolo("Gomma", "Cancelleria", 2));
+    Articolo articoloNuovo("Gomma", "Cancelleria", 2);
+    lista5->aggiungiArticolo(articoloNuovo);
     cout << endl;
     cout << "Articoli presenti nella lista " << lista5->getIDlista() << ": " << endl;
     articoli = lista5->getListaArt();

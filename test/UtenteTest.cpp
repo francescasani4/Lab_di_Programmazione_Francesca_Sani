@@ -19,11 +19,11 @@ protected:
     Lista lista3{"Hobby"};
 };
 
-TEST_F(UtenteSuite, TestGetIDlista) {
+TEST_F(UtenteSuite, TestGetIDutente) {
     ASSERT_EQ(utente.getIDutente(), "Francesca");
 }
 
-TEST_F(UtenteSuite, TestSetIDlista) {
+TEST_F(UtenteSuite, TestSetIDutente) {
     utente.setIDutente("Alessia");
 
     ASSERT_EQ(utente.getIDutente(), "Alessia");
